@@ -1,0 +1,26 @@
+---
+/** * insert <wbr /> (word break opportunity) tags after specified `breakOn` character
+(default underscore) */
+export interface Props {
+  word: string;
+  breakOn?: string;
+}
+
+const { word, breakOn = "_" } = Astro.props;
+---
+
+<>
+  {
+    word.split(breakOn).map((piece, i) => (
+      <>
+        {i !== 0 && (
+          <>
+            {breakOn}
+            <wbr />
+          </>
+        )}
+        {piece}
+      </>
+    ))
+  }
+</>

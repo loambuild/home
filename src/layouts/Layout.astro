@@ -1,6 +1,6 @@
 ---
 export interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -8,28 +8,78 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
+  :root {
+    /* Colors */
+    --light: #f0f0f0;
+    --white: #fff;
+    --dark: #3a3d49;
+    --black: #000;
+    --box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    --box-shadow-deep: 0px 4px 20px rgba(0, 0, 0, 0.5);
+
+    --fg: var(--black);
+    --bg: var(--light);
+    --button-fg: var(--light);
+    --button-bg: var(--black);
+
+    --red: #fc5b5b;
+    --bg-red: #{adjust-color($red, $alpha: -0.9)};
+    --bg-red-gradient: linear-gradient(
+      to bottom right,
+      rgb(75, 61, 88),
+      rgb(80, 73, 79)
+    );
+
+    background-color: var(--bg);
+    color: var(--fg);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --bg: var(--black);
+    --fg: var(--light);
+    --button-fg: var(--black);
+    --button-bg: var(--light);
+
+    --box-shadow: none;
+    --box-shadow-hover: 0px 0px 100px #{adjust-color($black, $alpha: -0.9)} inset;
+    --box-shadow-deep: 0px 0px 2px var(--gray-5), 0px 4px 20px var(--black);
+  }
+
+  .bokeh {
+    --bg: var(--dark);
+    --fg: var(--white);
+    --button-fg: var(--light);
+    --button-bg: var(--black);
+
+    --gray-1: #{adjust-color($white, $alpha: -0.9)};
+    --gray-2: #{adjust-color($white, $alpha: -0.8)};
+    --gray-3: #{adjust-color($white, $alpha: -0.7)};
+    --gray-4: #{adjust-color($white, $alpha: -0.6)};
+    --gray-5: #{adjust-color($white, $alpha: -0.5)};
+    --gray-6: #{adjust-color($white, $alpha: -0.4)};
+    --gray-7: #{adjust-color($white, $alpha: -0.3)};
+    --gray-8: #{adjust-color($white, $alpha: -0.2)};
+    --gray-9: #{adjust-color($white, $alpha: -0.1)};
+
+    --box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    --box-shadow-hover: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    --box-shadow-deep: 0px 4px 20px rgba(0, 0, 0, 0.5);
+
+    background: var(--bg) url(./circles.svg);
+    background-size: calc(max(100%, 1440px));
+    background-repeat: no-repeat;
+  }
 </style>

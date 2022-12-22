@@ -1,81 +1,90 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
+import WithWBRs from "../components/WithWBRs.astro";
+
+const featuredContracts = [
+  [
+    "simple.statusmessage.raendev.testnet",
+    "A simple status message contract. Each account can store one `message` string.",
+  ],
+  [
+    "intermediate.statusmessage.raendev.testnet",
+    "Intermediate example of a status message with a body and title.",
+  ],
+  [
+    "advanced.statusmessage.raendev.testnet",
+    "Advanced example of a status message. `body` and `title` are encapsulated in a `Message` type, which is also exposed.",
+  ],
+  [
+    "v2.tenk.testnet",
+    "A full-featured (read: complex) NFT contract used as the starting point for new [TenK](https://tenk.dev) contracts.",
+  ],
+] as const;
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="RAEN Admin">
+  <div class="bokeh text-center">
+    <div class="text-left">
+      <Logo />
+    </div>
+    <div class="container">
+      <h1>RAEN makes it easy to explore contracts on NEAR.</h1>
+      <p class="text-slate-400">
+        Enter a contract name below (i.e. <a href="/counter.raendev.testnet"
+          >counter.raendev.testnet</a
+        >)
+      </p>
+      <!-- <ContractForm autoFocus /> -->
+    </div>
+    <div>
+      <!-- wrapping div is needed for styling! -->
+      <svg
+        class="text-gray-100 block mt-10 translate-y-1 dark:bg-black"
+        width="100%"
+        viewBox="0 0 1440 72"
+        fill="none"
+      >
+        <path
+          d="M565 26.6842C347.8 -17.7789 104.833 34.9474 0 72L1440 72V0.5C1230.5 28.9211 782.2 71.1474 565 26.6842Z"
+          fill="var(--color)"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="container mx-auto p-6">
+    <div class="responsiveVideoWrap">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/m5dOyaKp18Y"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+    <h2 style={{ paddingTop: "var(--spacing-l)" }}>Try it</h2>
+    <p>Poke at one of these examples:</p>
+    <ul>
+      {
+        featuredContracts.map(([contract, description]) => (
+          <li>
+            <h3>
+              <a href={contract}>
+                <WithWBRs word={contract} breakOn="." />
+              </a>
+            </h3>
+            <p>{description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p>
+      And learn to use it with <strong
+        ><a href="https://raen.dev/guide">✨ The Guide ✨</a>
+      </strong>
+    </p>
+    <p>
+      Curious how it works? Want to report bugs or feature requests? Visit the
+      repositories on GitHub: <a href="https://github.com/raendev/raen"
+        >RAEN CLI</a
+      > & <a href="https://github.com/raendev/admin">this website</a>.
+    </p>
+  </div>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-</style>
