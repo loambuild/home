@@ -15,7 +15,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="bg-slate-200 dark:bg-black">
     <slot />
   </body>
 </html>
@@ -43,7 +43,6 @@ const { title } = Astro.props;
       rgb(80, 73, 79)
     );
 
-    background-color: var(--bg);
     color: var(--fg);
   }
 
