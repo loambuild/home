@@ -20,6 +20,22 @@ const { title } = Astro.props;
   </body>
 </html>
 <style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro&display=swap');
+
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer base {
+    a {
+      @apply underline;
+    }
+
+    ul {
+      @apply list-disc;
+      @apply pl-10;
+    }
+  }
   :root {
     /* Colors */
     --light: #f0f0f0;
@@ -45,7 +61,6 @@ const { title } = Astro.props;
 
     color: var(--fg);
   }
-
   @media (prefers-color-scheme: dark) {
     --bg: var(--black);
     --fg: var(--light);
@@ -55,6 +70,14 @@ const { title } = Astro.props;
     --box-shadow: none;
     --box-shadow-hover: 0px 0px 100px #{adjust-color($black, $alpha: -0.9)} inset;
     --box-shadow-deep: 0px 0px 2px var(--gray-5), 0px 4px 20px var(--black);
+  }
+
+  html {
+    font-family: Inter, sans-serif;
+  }
+
+  code {
+    font-family: "Source Code Pro", monospace;;
   }
 
   .bokeh {
@@ -81,4 +104,6 @@ const { title } = Astro.props;
     background-size: calc(max(100%, 1440px));
     background-repeat: no-repeat;
   }
+
+
 </style>
