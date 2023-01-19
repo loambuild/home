@@ -1,4 +1,12 @@
-<form class="relative mt-4">
+---
+export interface Props {
+  classes?: string;
+}
+
+const { classes } = Astro.props;
+---
+
+<form class={`relative ${classes}`}>
   <div class="border-2 flex items-center rounded-md text-white pl-2">
     <label for="customContract">
       <svg

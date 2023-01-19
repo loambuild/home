@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from '../components/Sidebar.astro';
+import TopBar from '../components/TopBar.astro';
+---
+
+<Layout title="RAEN Admin">
+  <div class="flex">
+    <Sidebar />
+    <div class="w-full">
+      <TopBar />
+      <!--
+        Main Content Goes here
+      -->
+    </div>
+  </div>
+</Layout>
