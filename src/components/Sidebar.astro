@@ -1,9 +1,13 @@
 ---
 import Logo from "../components/Logo.astro";
 import WalletIcon from '../components/Icons/Wallet.astro';
+import Section from '../components/SidebarParts/Section.jsx';
 ---
 
 <div class="bokeh flex flex-col h-screen w-fit px-10 min-w-[300px]">
   <Logo wrapClass="w-full flex items-center justify-center py-8" />
-  <button class="bg-black text-white flex items-center justify-center rounded-lg p-4"><WalletIcon classes="mr-3" /> Sign In</button>
+  <button class="bg-black text-white flex items-center justify-center rounded-lg p-3 text-lg"><WalletIcon classes="mr-3" /> Sign In</button>
+
+  <Section heading="View Methods" client:load />
+  <Section heading="Change Methods" client:load />
 </div>
