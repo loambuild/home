@@ -1,10 +1,28 @@
+import equal from 'fast-deep-equal'
+import {
+  ContractMethodGroup,
+  ContractInterface,
+  init,
+  getSchema,
+  getSchemaCached,
+  SchemaInterface,
+} from "../protocols/near";
+
 export async function get({ request }) {
-  // This solution works but feels a bit "hacky"
-  const urlSearchParams = new URLSearchParams(request.url.split('?')[1]);
-  const contract = urlSearchParams.get('contract')
+  const contract = 'counter.raendev.testnet'
   const responseData = {
     message: "The contract is: " + contract
   }
+
+  const freshSchema = await getSchema(contract)
+    // setSchema({
+    //   ...cache,
+    //   [contract]: {
+    //     ...init(contract),
+    //     ...freshSchema,
+    //   }
+    // })
+    console.log('[[[freshSchema]]]', freshSchema)
 
   return new Response(JSON.stringify(responseData), { status: 200 });
 }
