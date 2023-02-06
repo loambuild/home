@@ -4,6 +4,8 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+
+const contract = Astro.url.searchParams.get('contract');
 ---
 
 <!DOCTYPE html>
@@ -13,6 +15,16 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      window.onload = function() {
+        fetch(`/near?contract=${contract}`, {
+          method: "GET",
+        })
+        .then((response) => response.json().then((data) => {
+          console.log('[DATA]', data.message);
+        }));
+      }
+    </script>
     <title>{title}</title>
   </head>
   <body class="bg-slate-200 dark:bg-black">

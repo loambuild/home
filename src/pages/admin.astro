@@ -1,12 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Sidebar from '../components/Sidebar.astro';
+import Sidebar from '../components/Sidebar';
 import TopBar from '../components/TopBar.astro';
 ---
 
 <Layout title="RAEN Admin">
   <div class="flex">
-    <Sidebar />
+    <Sidebar
+      client:load
+    />
     <div class="w-full">
       <TopBar />
       <!--
