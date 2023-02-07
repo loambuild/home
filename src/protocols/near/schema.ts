@@ -1,7 +1,6 @@
 import type * as naj from "near-api-js"
 // import { brotliDec } from "brotli-dec-wasm";
-import brotliPromise from 'brotli-wasm'; 
-console.log('brotliPromise', brotliPromise)
+import brotli from 'brotli-wasm'; 
 
 import { init } from "."
 import { readCustomSection } from "wasm-walrus-tools"
@@ -63,9 +62,9 @@ async function fetchJsonAddressOrData(contract: string, near: naj.Near): Promise
   if (startOfJson.startsWith("https://")) {
     return Buffer.from(jsonCustomSection).toString('utf8');
   }
-  const brotli = await brotliPromise;
+  // const brotli = await brotliPromise;
 
-  console.log('WASM', { wasm, jsonCustomSection, startOfJson })
+  console.log('WASM', { wasm, jsonCustomSection, startOfJson, brotli })
 
   // Else is compressed data
   // const brotli = await import("brotli-dec-wasm");
