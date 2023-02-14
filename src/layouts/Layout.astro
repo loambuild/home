@@ -2,14 +2,13 @@
 import type { SerializableContractData } from "../protocols/types";
 
 export interface Props {
-  title: string;
   contractData?: SerializableContractData | undefined;
 }
 
-const {
-  title,
-  contractData: { schema, contract, protocol } = {},
-} = Astro.props;
+const { contractData: { schema, contract, protocol } = {} } = Astro.props;
+
+const cardTitle = contract ? `RAEN Admin › ${contract}` : "RAEN Admin";
+const pageTitle = contract ? `${contract} ‹ RAEN Admin` : "RAEN Admin";
 
 const description = contract
   ? `Explore ${protocol} smart contract ${contract} using an interactive admin panel`
@@ -27,16 +26,16 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={cardTitle} />
     <meta property="og:url" content="https://raen.dev/admin" />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@chadoh" />
-    <meta name="twitter:title" content="RAEN Admin" />
+    <meta name="twitter:title" content={cardTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
     <script is:inline define:vars={{ schema }}>

@@ -8,7 +8,7 @@ const { contract } = Astro.params;
 const data = await getData(contract);
 ---
 
-<Layout title={`${contract} ‹ RAEN Admin`} contractData={data}>
+<Layout contractData={data}>
   <div class="flex">
     <Sidebar client:load />
     <div class="w-full">
