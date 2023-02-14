@@ -10,5 +10,5 @@ if (!contract || !data) return Astro.redirect("/404");
 ---
 
 <Layout contractData={data}>
-  <ClientSideEntryPoint client:load contractData={data} />
+  <ClientSideEntryPoint client:only contractData={data} />
 </Layout>
