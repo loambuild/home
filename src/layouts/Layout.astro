@@ -1,11 +1,12 @@
 ---
+import type { JSONSchema } from "../protocols/types";
+
 export interface Props {
   title: string;
+  schema: JSONSchema | undefined;
 }
 
-const { title } = Astro.props;
-
-const contract = Astro.url.searchParams.get('contract');
+const { title, schema } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -15,25 +16,17 @@ const contract = Astro.url.searchParams.get('contract');
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <script is:inline>
-      window.onload = function() {
-        console.log('I RAN')
-        fetch(`/near?contract=counter.raendev.testnet`, {
-          method: "GET",
-        })
-        .then((response) => response.json().then((data) => {
-          console.log('[DATA]', data.message);
-        }));
-      }
-    </script>
     <title>{title}</title>
+    <script is:inline define:vars={{ schema }}>
+      window.schema = schema;
+    </script>
   </head>
   <body class="bg-slate-200 dark:bg-black">
     <slot />
   </body>
 </html>
 <style is:global>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro&display=swap");
 
   @tailwind base;
   @tailwind components;
@@ -90,7 +83,7 @@ const contract = Astro.url.searchParams.get('contract');
   }
 
   code {
-    font-family: "Source Code Pro", monospace;;
+    font-family: "Source Code Pro", monospace;
   }
 
   .bokeh {
@@ -117,6 +110,4 @@ const contract = Astro.url.searchParams.get('contract');
     background-size: calc(max(100%, 1440px));
     background-repeat: no-repeat;
   }
-
-
 </style>

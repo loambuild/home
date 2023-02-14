@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Sidebar from "../components/Sidebar";
+import TopBar from "../components/TopBar.astro";
+import { getSchema } from "../protocols/near";
+
+const { contract } = Astro.params;
+const schema = contract ? await getSchema(contract) : undefined;
+---
+
+<Layout title={`${contract} ‹ RAEN Admin`} schema={schema?.schema}>
+  <div class="flex">
+    <Sidebar client:load />
+    <div class="w-full">
+      <TopBar />
+      <!--
+        Main Content Goes here
+      -->
+    </div>
+  </div>
+</Layout>

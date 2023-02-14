@@ -1,83 +1,10 @@
-import type * as naj from "near-api-js"
-// import { brotliDec } from "brotli-dec-wasm";
-import brotli from 'brotli-wasm'; 
-
 import { init } from "."
-import { readCustomSection } from "wasm-walrus-tools"
-import type { ContractCodeView } from "near-api-js/lib/providers/provider"
 import type { ContractMethodGroup, JSONSchema } from '../types'
 
 
 export async function fetchSchema(contract: string): Promise<JSONSchema> {
-  const { near } = init(contract)
-
-  // TODO handle either HTTP endpoint or IPFS hash
-  const urlOrData = await fetchJsonAddressOrData(contract, near)
-
-  // TODO cache schema JSON in localeStorage, return early here if available
-  if (urlOrData.startsWith("https://")) {
-    const schema = await fetch(urlOrData)
-      .then((response) => {
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`)
-        return response.json()
-      })
-
-    return schema;
-  }
-
-  const schema = JSON.parse(urlOrData)
-
-  // TODO validate schema adheres to JSONSchema
-  return schema
-}
-
-class NoCustomSection extends Error {
-  constructor() {
-    super("Contract Wasm does not have a custom section called \"json\"")
-  }
-}
-
-class DecompressionFailure extends Error {
-  constructor() {
-    super("Failed to decompile custom section")
-  }
-}
-
-async function fetchJsonAddressOrData(contract: string, near: naj.Near): Promise<string> {
-  const code = await near.connection.provider.query({
-    account_id: contract,
-    finality: 'final',
-    request_type: 'view_code',
-  }) as ContractCodeView;
-
-  const wasm = Buffer.from(code.code_base64, "base64")
-
-  const jsonCustomSection = await readCustomSection(wasm, "json")
-  if (!jsonCustomSection) {
-    throw new NoCustomSection()
-  }
-  
-  let startOfJson = Buffer.from(jsonCustomSection.slice(0, 20)).toString('utf8');
-  // if link return string
-  if (startOfJson.startsWith("https://")) {
-    return Buffer.from(jsonCustomSection).toString('utf8');
-  }
-  // const brotli = await brotliPromise;
-
-  console.log('WASM', { wasm, jsonCustomSection, startOfJson, brotli })
-
-  // Else is compressed data
-  // const brotli = await import("brotli-dec-wasm");
-
-
-  let decompressedData = brotli.decompress(jsonCustomSection);
-
-  console.log('DECOMPRESSED', {decompressedData, jsonCustomSection,})
-
-  if (!decompressedData) {
-    throw new DecompressionFailure()
-  }
-  return Buffer.from(decompressedData).toString("utf8");
+  if (!contract) throw new Error(`invalid contract: "${contract}"`)
+  return fetch(`https://api.raen.dev/${contract}.json`).then(res => res.json())
 }
 
 function hasContractMethodProperty(obj: {}): obj is { contractMethod: "change" | "view" } {

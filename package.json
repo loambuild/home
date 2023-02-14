@@ -18,20 +18,16 @@
     "@types/react-dom": "*",
     "ajv-dist": "*",
     "astro": "*",
-    "brotli-wasm": "*",
     "fast-deep-equal": "*",
     "json-schema": "*",
     "near-api-js": "*",
     "react": "*",
     "react-dom": "*",
     "react-router-dom": "*",
-    "tailwindcss": "*",
-    "wasm-walrus-tools": "AhaLabs/wasm-walrus-tools#v0.1.0"
+    "tailwindcss": "*"
   },
   "devDependencies": {
     "@types/node": "*",
-    "ajv": "*",
-    "vite-plugin-top-level-await": "*",
-    "vite-plugin-wasm": "^3.2.1"
+    "ajv": "*"
   }
 }

@@ -55,7 +55,7 @@ const cache: Record<ContractName, ContractInterface> = {}
  * @param contract Contract account id/name to sign in against
  */
 export function init(contract: string): ContractInterface {
-  if (cache[contract]) return cache[contract]
+  if (cache[contract]) return cache[contract]!
 
   const config = /near$/.test(contract)
     ? mainnetConfig
