@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import snake from "to-snake-case";
 import { Root as Tooltip, Portal, Trigger, Content, Arrow } from '@radix-ui/react-tooltip';
-import useNear from '../../hooks/useNear';
+import useNear from '../../hooks/useNear'
+import { getDefinition, canCall } from '../../../protocols/near'
+import { getContractData } from '../../utils'
 import type { ContractMethod } from '../../../protocols/types'
 import css from './methods.module.css';
 import { Crown } from './Crown'
 
 const Tip: React.FC<{ method: ContractMethod }> = ({ method }) => {
-  const { getDefinition } = useNear()
+  const { nearContract, schema } = getContractData();
   const [restrictedTo, setRestrictedTo] = useState<string>()
 
   useEffect(() => {
     setRestrictedTo(
-      getDefinition(method.title)?.allow
+      getDefinition(schema, method.title)?.allow
         ?.map(x => x.replace(/^::/, ''))
         ?.join(', ')
     )
   }, [getDefinition, method])
 
+  if (!nearContract) return null
   if (!restrictedTo) return null
 
   return (
@@ -50,14 +53,16 @@ export const Method: React.FC<{
   method: ContractMethod
   protocol: 'near' | 'cw'
 }> = ({ contract, isCurrentMethod, method, protocol }) => {
-  const { canCall, currentUser } = useNear()
+  const { currentUser } = useNear() ?? {}
+  const contractData = getContractData()
   const [allowed, setAllowed] = useState<boolean>(true)
   const [whyForbidden, setWhyForbidden] = useState<string>()
 
   useEffect(() => {
+    if (!currentUser || !contractData) return
     (async () => {
       const user = await currentUser
-      canCall(method.title, user?.accountId).then(can => {
+      canCall(contractData, method.title, user?.accountId).then(can => {
         setAllowed(can[0])
         setWhyForbidden(can[1] || undefined)
       })

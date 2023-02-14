@@ -17,7 +17,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
   showLogin = 'near',
 }) => {
     const { isMobile } = useWindowDimensions()
-    const { method } = getContractData()
+    const { contract, method } = getContractData()
     const [open, setOpenRaw] = useState(false)
     const [displaySidebar, setDisplaySidebar] = useState(false)
 
@@ -69,7 +69,10 @@ export const Layout: React.FC<React.PropsWithChildren<{
                 {showLogin === 'near' && <NearLogin />}
               </div>
             )}
-            <ContractNameForm />
+            <ContractNameForm
+              protocol={showLogin === 'near' ? 'NEAR' : 'CosmWasm'}
+              contract={contract}
+            />
           </div>
           {isMobile && (
             <div
