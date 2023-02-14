@@ -37,12 +37,7 @@ type MethodDefinition = {
   type?: string
 }
 
-export interface SchemaInterface {
-  getMethod: (methodName: string | undefined) => JSONSchema | undefined
-  getDefinition: (methodName: string) => MethodDefinition | undefined
-}
-
-export async function getData(contract: string | undefined): Promise<SerializableContractData | undefined> {
+export async function getData(contract?: string, method?: string): Promise<SerializableContractData | undefined> {
   if (!contract) return undefined;
   const schema = await fetchSchema(contract)
 
@@ -76,7 +71,15 @@ export async function getData(contract: string | undefined): Promise<Serializabl
     })
   }
 
-  return { contract, protocol: 'NEAR', schema, methods }
+  return {
+    contract,
+    method,
+    protocol: 'NEAR',
+    schema: method
+      ? { ...schema, $ref: `#/definitions/${method}` }
+      : schema,
+    methods,
+  }
 }
 
 function hasContractMethod(schema: JSONSchema, m: string, equalTo?: "change" | "view"): boolean {
@@ -91,10 +94,6 @@ function hasContractMethod(schema: JSONSchema, m: string, equalTo?: "change" | "
 export function getMethod(schema: JSONSchema, m?: string | undefined): JSONSchema | undefined {
   if (!m) return undefined
   if (!hasContractMethod(schema, m)) return undefined
-  return {
-    $ref: `#/definitions/${m}`,
-    ...schema,
-  }
 }
 
 export function getDefinition(schema: JSONSchema, m?: string): MethodDefinition | undefined {

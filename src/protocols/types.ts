@@ -18,6 +18,7 @@ export interface ContractMethodGroup {
 
 export interface SerializableContractData {
   contract: string
+  method?: string
   protocol: 'NEAR' | 'CosmWasm'
   schema: JSONSchema
   methods: ContractMethodGroup[]

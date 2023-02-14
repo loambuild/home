@@ -34,7 +34,7 @@ export class UnknownNetworkError extends Error {
 
 type ContractName = string
 
-export interface ContractInterface {
+export interface NearContractInterface {
   contract: string,
   config: typeof testnetConfig | typeof mainnetConfig
   near: naj.Near
@@ -43,7 +43,7 @@ export interface ContractInterface {
   signOut: () => void
 }
 
-const cache: Record<ContractName, ContractInterface> = {}
+const cache: Record<ContractName, NearContractInterface> = {}
 
 /**
  * Get config, NEAR object, wallet connection, and signIn function given a
@@ -54,7 +54,7 @@ const cache: Record<ContractName, ContractInterface> = {}
  *
  * @param contract Contract account id/name to sign in against
  */
-export function init(contract: string): ContractInterface {
+export function init(contract: string): NearContractInterface {
   if (cache[contract]) return cache[contract]!
 
   const config = /near$/.test(contract)
@@ -72,6 +72,7 @@ export function init(contract: string): ContractInterface {
       : new naj.keyStores.BrowserLocalStorageKeyStore()
   })
 
+  // @ts-expect-error naj still has bad typings
   const wallet = new naj.WalletConnection(near)
 
   /**

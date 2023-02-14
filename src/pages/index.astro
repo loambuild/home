@@ -1,8 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Logo from "../components/Logo";
-import ContractForm from "../components/ContractForm.astro";
-import WithWBRs from "../components/WithWBRs.astro";
+import { Logo, ContractNameForm, WithWBRs } from "../react/components";
 
 const featuredContracts = [
   [
@@ -24,7 +22,7 @@ const featuredContracts = [
 ] as const;
 ---
 
-<Layout title="RAEN Admin">
+<Layout>
   <div class="bokeh text-center">
     <div class="text-left">
       <Logo />
@@ -38,8 +36,7 @@ const featuredContracts = [
           href="/near/counter.raendev.testnet">counter.raendev.testnet</a
         >)
       </p>
-      <!-- <ContractForm autoFocus /> -->
-      <ContractForm classes="mt-4" />
+      <ContractNameForm protocol="NEAR" />
     </div>
     <div>
       <!-- wrapping div is needed for styling! -->

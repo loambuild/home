@@ -1,21 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Sidebar from "../../components/Sidebar";
-import TopBar from "../../components/TopBar.astro";
 import { getData } from "../../protocols/near";
+import { ClientSideEntryPoint } from "../../react";
 
 const { contract } = Astro.params;
 const data = await getData(contract);
+
+if (!contract || !data) return Astro.redirect("/404");
 ---
 
 <Layout contractData={data}>
-  <div class="flex">
-    <Sidebar client:load />
-    <div class="w-full">
-      <TopBar />
-      <!--
-        Main Content Goes here
-      -->
-    </div>
-  </div>
+  <ClientSideEntryPoint client:load contractData={data} />
 </Layout>

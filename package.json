@@ -14,20 +14,26 @@
     "@astrojs/react": "*",
     "@astrojs/tailwind": "*",
     "@radix-ui/react-collapsible": "*",
-    "@types/react": "*",
-    "@types/react-dom": "*",
-    "ajv-dist": "*",
+    "@radix-ui/react-dropdown-menu": "^2.0.2",
+    "@radix-ui/react-tooltip": "^1.0.3",
+    "@rjsf/core": "^4.2.0",
     "astro": "*",
-    "fast-deep-equal": "*",
     "json-schema": "*",
     "near-api-js": "*",
     "react": "*",
     "react-dom": "*",
-    "react-router-dom": "*",
-    "tailwindcss": "*"
+    "react-markdown": "^8.0.5",
+    "react-router-dom": "^6.8.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "tailwindcss": "*",
+    "to-snake-case": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@types/react-syntax-highlighter": "^15.5.4",
+    "@types/to-snake-case": "^1.0.0",
     "ajv": "*"
   }
 }

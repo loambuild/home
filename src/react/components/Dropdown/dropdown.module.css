@@ -1,0 +1,32 @@
+.trigger {
+  background-image: url(./angle-down.svg);
+  background-repeat: no-repeat;
+  background-position: bottom 50% right var(--spacing-s);
+  background-size: var(--spacing-s);
+  padding-right: var(--spacing-xxl);
+}
+
+.arrow {
+  fill: var(--button-bg);
+}
+
+.content {
+  border-radius: var(--br-small);
+  box-shadow: var(--box-shadow-deep);
+}
+
+.item {
+  border: none;
+  border-radius: var(--br-small);
+  background: var(--button-bg);
+  box-shadow: var(--box-shadow);
+  color: var(--button-fg);
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-m);
+}
+
+.item:focus,
+.item:hover {
+  box-shadow: var(--box-shadow-hover);
+  outline: none;
+}
