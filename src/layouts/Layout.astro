@@ -5,7 +5,8 @@ export interface Props {
   contractData?: SerializableContractData | undefined;
 }
 
-const { contractData: { schema, contract, protocol } = {} } = Astro.props;
+const { contractData } = Astro.props;
+const { schema, contract, protocol } = contractData ?? {};
 
 const cardTitle = contract ? `RAEN Admin › ${contract}` : "RAEN Admin";
 const pageTitle = contract ? `${contract} ‹ RAEN Admin` : "RAEN Admin";
@@ -38,8 +39,8 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
     <meta name="twitter:title" content={cardTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={image} />
-    <script is:inline define:vars={{ schema }}>
-      window.schema = schema;
+    <script is:inline define:vars={{ contractData }}>
+      window.contractData = contractData;
     </script>
   </head>
   <body class="bg-slate-200 dark:bg-black">
