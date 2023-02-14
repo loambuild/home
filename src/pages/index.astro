@@ -30,16 +30,16 @@ const featuredContracts = [
       <Logo />
     </div>
     <div class="max-w-[770px] mx-auto px-4 pt-10">
-      <h1 class="text-white text-5xl">RAEN makes it easy to explore contracts on NEAR.</h1>
+      <h1 class="text-white text-5xl">
+        RAEN makes it easy to explore contracts on NEAR.
+      </h1>
       <p class="text-slate-400 mt-6 mb-4">
-        Enter a contract name below (i.e. <a href="/counter.raendev.testnet"
-          >counter.raendev.testnet</a
+        Enter a contract name below (i.e. <a
+          href="/near/counter.raendev.testnet">counter.raendev.testnet</a
         >)
       </p>
       <!-- <ContractForm autoFocus /> -->
-      <ContractForm
-        classes="mt-4"
-      />
+      <ContractForm classes="mt-4" />
     </div>
     <div>
       <!-- wrapping div is needed for styling! -->
@@ -71,7 +71,7 @@ const featuredContracts = [
         featuredContracts.map(([contract, description]) => (
           <li>
             <h3>
-              <a href={contract}>
+              <a href={`/near/${contract}`}>
                 <WithWBRs word={contract} breakOn="." />
               </a>
             </h3>

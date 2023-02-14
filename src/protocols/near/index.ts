@@ -128,6 +128,6 @@ export function init(contract: string): ContractInterface {
     signOut,
   }
 
-  return cache[contract]
+  return cache[contract]!
 }
 

@@ -5,7 +5,7 @@ import {
   ContractMethodGroup,
   ContractInterface,
   init,
-  getSchema,
+  getData,
   getSchemaCached,
   SchemaInterface,
 } from "../protocols/near"
