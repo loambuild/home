@@ -5,6 +5,7 @@ import { JsonRpcProvider, FinalExecutionStatus, FinalExecutionStatusBasic } from
 import snake from "to-snake-case";
 import { getContractData, prettifyJsonString } from "../../../utils"
 import useNear from "../../../hooks/useNear"
+import { canCall, getDefinition, getMethod } from '../../../../protocols/near'
 import useWindowDimensions from '../../../hooks/useWindowDimensions'
 import { WithWBRs, JsonSchemaForm, JsonSchemaFormDataWrapped } from '../..'
 
@@ -74,15 +75,16 @@ const Display: React.FC<React.PropsWithChildren<{
 }
 
 export function Form() {
-  const { near, canCall, config, currentUser, getMethod, getDefinition } = useNear()
+  const contractData = getContractData()
+  const { near, config, currentUser } = useNear()
   const { isMobile } = useWindowDimensions()
   const { nearContract: contract, method } = getContractData()
-  const def = method ? getDefinition(method) : undefined
+  const def = method ? getDefinition(contractData.schema, method) : undefined
   const [result, setResult] = useState<string>()
   const [tx, setTx] = useState<string>()
   const [logs, setLogs] = useState<string[]>()
   const [whyForbidden, setWhyForbidden] = useState<string>()
-  const schema = getMethod(method)
+  const schema = getMethod(contractData.schema, method)
   const nonReactParams = window.location.search
 
   // if redirected back to this page from NEAR Wallet confirmation, check results
@@ -99,7 +101,7 @@ export function Form() {
       if (errMsg) throw new Error(decodeURIComponent(errMsg))
       else if (errCode) throw new Error(decodeURIComponent(errCode))
       else if (txHash) {
-        const rpc = new JsonRpcProvider(config.nodeUrl)
+        const rpc = new JsonRpcProvider({ url: config.nodeUrl })
         const tx = await rpc.txStatus(txHash, user.accountId)
         if (!hasSuccessValue(tx.status)) return undefined
         setResult(parseResult(tx.status.SuccessValue))
@@ -114,11 +116,11 @@ export function Form() {
       setWhyForbidden(undefined)
     } else {
       (async () => {
-        const [, why] = await canCall(method, (await currentUser)?.accountId)
+        const [, why] = await canCall(contractData, method, (await currentUser)?.accountId)
         setWhyForbidden(why)
       })()
     }
-  }, [canCall, method, currentUser]);
+  }, [contractData, method, currentUser]);
 
   // reset result when URL changes
   useEffect(() => {
@@ -132,7 +134,7 @@ export function Form() {
     setTx(undefined)
     setLogs(undefined)
     if (!near || !contract || !method) return
-    if (getDefinition(method)?.contractMethod === 'view') {
+    if (getDefinition(contractData.schema, method)?.contractMethod === 'view') {
       const account = await near.account(contract)
       const res = await account.viewFunction(
         contract,

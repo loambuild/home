@@ -53,7 +53,7 @@ export const Method: React.FC<{
   method: ContractMethod
   protocol: 'near' | 'cw'
 }> = ({ contract, isCurrentMethod, method, protocol }) => {
-  const { currentUser } = useNear() ?? {}
+  const { currentUser } = useNear()
   const contractData = getContractData()
   const [allowed, setAllowed] = useState<boolean>(true)
   const [whyForbidden, setWhyForbidden] = useState<string>()

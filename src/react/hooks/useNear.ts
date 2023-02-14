@@ -10,12 +10,15 @@ type NearInterface = NearContractInterface & SerializableContractData & {
 
 const cache: Record<string, NearInterface> = {}
 
-export default function useNear(): NearInterface | undefined {
+// define as constant to avoid rerenders
+const empty: Partial<NearInterface> = {}
+
+export default function useNear(): NearInterface | typeof empty {
   const { nearContract, ...data } = getContractData()
-  if (!nearContract) return undefined
+  if (!nearContract) return empty
   cache[nearContract] = cache[nearContract] ?? {
     ...init(nearContract),
     ...data
   }
-  return cache[nearContract]
+  return cache[nearContract]!
 }
