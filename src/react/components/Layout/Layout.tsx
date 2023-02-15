@@ -56,7 +56,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
                     style={{ flex: '0 0 auto' }}
                   >
                     <span className={open ? css.open : css.closed} aria-hidden />
-                    <span className="visuallyHidden">{open ? 'Close Menu' : 'Open Menu'}</span>
+                    <span className="sr-only">{open ? 'Close Menu' : 'Open Menu'}</span>
                   </button>
                   <a href="/" style={{
                     border: 'none',

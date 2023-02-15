@@ -7,10 +7,10 @@ export const Sidebar: React.FC<React.PropsWithChildren<{
 }>> = ({ showLogin }) => {
   const { isMobile } = useWindowDimensions()
   return (
-    <div className={`bokeh ${css.sidebar} ${isMobile ? css.mobile : ''}`}>
+    <div className="bokeh flex flex-col h-screen w-fit px-10 min-w-[300px]">
       {!isMobile && (
         <div className={css.nav}>
-          <div className={css.logo}>
+          <div className="flex items-center justify-center py-5">
             <a href="/" style={{ border: 'none', background: 'transparent' }}>
               <Logo padding="var(--spacing-xs) 0 var(--spacing-s)" />
             </a>

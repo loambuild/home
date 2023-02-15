@@ -21,20 +21,20 @@ export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = (
   return (
     <Collapsible
       open={open}
-      className={`${css.section} ${!open && css.closed}`}
+      className={`${!open && css.closed}`}
     >
-      <label>
-        <h3>{heading}</h3>
+      <label className="flex">
+        <h3 className="uppercase text-gray-400 font-bold text-xl cursor-pointer">{heading}</h3>
         <Trigger asChild>
           <button
             className={css.chevron}
             onClick={() => setOpen(!open)}
           >
-            <span className="visuallyHidden">{open ? 'Collapse section' : 'Expand section'}</span>
+            <span className="sr-only">{open ? 'Collapse section' : 'Expand section'}</span>
           </button>
         </Trigger>
       </label>
-      <Content className={css.content} forceMount>
+      <Content className="pl-4 mt-2 mb-4 list-none text-lg font-medium text-gray-400 border-l-2 border-l-black flex flex-col" forceMount>
         {methods.map((method, i) =>
           <Method
             key={i}

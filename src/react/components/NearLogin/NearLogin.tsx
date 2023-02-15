@@ -19,7 +19,7 @@ export function NearLogin() {
 
   return (
     <div
-      className={css.login}
+      className="bg-black text-white flex items-center justify-center rounded-lg p-3 text-lg mb-4"
       style={{ visibility: loaded ? undefined : 'hidden' }}
     >
       {user ? (
@@ -35,7 +35,7 @@ export function NearLogin() {
           items={[{ children: "Sign Out", onSelect: signOut }]}
         />
       ) : (
-        <button onClick={signIn}><Wallet />Sign In</button>
+        <button onClick={signIn} className="flex items-center justify-center"><Wallet /><span className="ml-2">Sign In</span></button>
       )}
     </div>
   )

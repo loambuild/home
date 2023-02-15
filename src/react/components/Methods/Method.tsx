@@ -26,8 +26,8 @@ const Tip: React.FC<{ method: ContractMethod }> = ({ method }) => {
   return (
     <Tooltip>
       <Trigger asChild>
-        <span className={css.crown}>
-          <span className="visuallyHidden">Restricted</span>
+        <span className="flex">
+          <span className="sr-only">Restricted</span>
           <Crown />
         </span>
       </Trigger>
@@ -85,7 +85,7 @@ export const Method: React.FC<{
     <a
       aria-controls="mainContent"
       href={`/${protocol}/${contract}/${method.link}`}
-      className={allowed ? undefined : css.forbidden}
+      className={`${allowed ? undefined : css.forbidden} no-underline py-1`}
       title={allowed ? undefined : `Forbidden: ${whyForbidden}`}
     >
       {snake(method.title)}
