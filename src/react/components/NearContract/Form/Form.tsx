@@ -103,7 +103,7 @@ export function Form() {
       else if (txHash) {
         const rpc = new JsonRpcProvider({ url: config.nodeUrl })
         const tx = await rpc.txStatus(txHash, user.accountId)
-        if (!hasSuccessValue(tx.status)) return undefined
+        if (!hasSuccessValue(tx.status)) return
         setResult(parseResult(tx.status.SuccessValue))
         setTx(txHash)
       }
