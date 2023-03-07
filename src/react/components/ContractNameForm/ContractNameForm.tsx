@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { init } from "../../../protocols/near"
-import css from "./form.module.css";
 
 export const ContractNameForm: React.FC<{
   autoFocus?: boolean
@@ -25,7 +24,7 @@ export const ContractNameForm: React.FC<{
     }, [autoFocus, inputRef])
 
     return (
-      <form className="border-2 flex items-center rounded-md text-white pl-2 w-full" onSubmit={e => {
+      <form className="border-2 flex items-center rounded-md text-white w-full" onSubmit={e => {
         e.preventDefault()
 
         if (!custom) return
@@ -46,8 +45,8 @@ export const ContractNameForm: React.FC<{
           }
         }
       }}>
-        <div className={css.border}>
-          <label className={css.label} htmlFor="customContract">
+        <div className="flex-1 flex p-2">
+          <label className="" htmlFor="customContract">
             <svg
               viewBox="0 0 288 288"
               height="1.5em"
@@ -66,12 +65,12 @@ export const ContractNameForm: React.FC<{
             ref={inputRef}
             onChange={e => setCustom(e.target.value)}
           />
-          <button className={css.button} disabled={!custom || custom === contract}>
+          <button className="disabled:opacity-40" disabled={!custom || custom === contract}>
             &rarr;
           </button>
         </div>
         {error && (
-          <div className={`errorHint ${css.error}`}>{error}</div>
+          <div className="errorHint">{error}</div>
         )}
       </form>
     )
