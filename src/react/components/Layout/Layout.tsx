@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
 import { getContractData } from "../../utils"
 import { ContractNameForm, Logo, NearLogin } from '..'
 import { Sidebar } from './Sidebar'
@@ -58,13 +59,13 @@ export const Layout: React.FC<React.PropsWithChildren<{
                     <span className={open ? css.open : css.closed} aria-hidden />
                     <span className="sr-only">{open ? 'Close Menu' : 'Open Menu'}</span>
                   </button>
-                  <a href="/" style={{
+                  <Link to="/" style={{
                     border: 'none',
                     background: 'transparent',
                     flex: '0 1 90px',
                   }}>
                     <Logo padding="0" width="auto" />
-                  </a>
+                  </Link>
                 </div>
                 {showLogin === 'near' && <NearLogin />}
               </div>

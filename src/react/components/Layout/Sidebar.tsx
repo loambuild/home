@@ -1,4 +1,5 @@
 import { NearLogin, Logo, Methods } from '..'
+import { Link } from "react-router-dom"
 import css from './sidebar.module.css'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
@@ -11,9 +12,9 @@ export const Sidebar: React.FC<React.PropsWithChildren<{
       {!isMobile && (
         <div className={css.nav}>
           <div className="flex items-center justify-center py-5">
-            <a href="/" style={{ border: 'none', background: 'transparent' }}>
+            <Link to="/" style={{ border: 'none', background: 'transparent' }}>
               <Logo padding="var(--spacing-xs) 0 var(--spacing-s)" />
-            </a>
+            </Link>
           </div>
           {showLogin === 'near' && <NearLogin />}
         </div>

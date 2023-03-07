@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import snake from "to-snake-case";
+import { Link } from "react-router-dom";
 import { Root as Tooltip, Portal, Trigger, Content, Arrow } from '@radix-ui/react-tooltip';
 import useNear from '../../hooks/useNear'
 import { getDefinition, canCall } from '../../../protocols/near'
@@ -82,14 +83,14 @@ export const Method: React.FC<{
   }
 
   return (
-    <a
+    <Link
       aria-controls="mainContent"
-      href={`/${protocol}/${contract}/${method.link}`}
+      to={`/${protocol}/${contract}/${method.link}`}
       className={`${allowed ? undefined : css.forbidden} no-underline py-1`}
       title={allowed ? undefined : `Forbidden: ${whyForbidden}`}
     >
       {snake(method.title)}
       <Tip method={method} />
-    </a>
+    </Link>
   )
 }
