@@ -94,6 +94,10 @@ function hasContractMethod(schema: JSONSchema, m: string, equalTo?: "change" | "
 export function getMethod(schema: JSONSchema, m?: string | undefined): JSONSchema | undefined {
   if (!m) return undefined
   if (!hasContractMethod(schema, m)) return undefined
+  return {
+    $ref: `#/definitions/${m}`,
+    ...schema,
+  }
 }
 
 export function getDefinition(schema: JSONSchema, m?: string): MethodDefinition | undefined {

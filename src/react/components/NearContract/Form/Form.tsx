@@ -74,11 +74,13 @@ const Display: React.FC<React.PropsWithChildren<{
   )
 }
 
+let count = 1;
+
 export function Form() {
   const contractData = getContractData()
   const { near, config, currentUser } = useNear()
   const { isMobile } = useWindowDimensions()
-  const { nearContract: contract, method } = getContractData()
+  const { nearContract: contract, method } = contractData
   const def = method ? getDefinition(contractData.schema, method) : undefined
   const [result, setResult] = useState<string>()
   const [tx, setTx] = useState<string>()

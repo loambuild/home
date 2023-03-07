@@ -11,7 +11,7 @@ export function getContractData(): Params {
   if (!window.contractData) {
     throw new Error('Cannot use `getContractData` on this page')
   }
-  const { contract, protocol } = window.contractData;
+  const { contract, protocol, method } = window.contractData;
   const cacheKey = `${protocol}:${contract}`
 
   if (cache[cacheKey]) return cache[cacheKey]!
@@ -19,6 +19,7 @@ export function getContractData(): Params {
   cache[cacheKey] = {
     nearContract: protocol === 'NEAR' ? contract : undefined,
     cwContract: protocol === 'CosmWasm' ? contract : undefined,
+    method,
     ...window.contractData
   }
 
