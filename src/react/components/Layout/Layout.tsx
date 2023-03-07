@@ -64,7 +64,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
                     background: 'transparent',
                     flex: '0 1 90px',
                   }}>
-                    <Logo padding="0" width="auto" />
+                    <Logo className="p-0" width="auto" />
                   </Link>
                 </div>
                 {showLogin === 'near' && <NearLogin />}
