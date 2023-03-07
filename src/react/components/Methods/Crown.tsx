@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Crown: React.FC<{
   height?: string | number
   width?: string | number
