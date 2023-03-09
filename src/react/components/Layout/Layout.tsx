@@ -46,7 +46,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
       <div className={css.layout}>
         {!isMobile && <Sidebar showLogin={showLogin} />}
         <div>
-          <div className={`${isMobile ? 'bokeh' : ''} ${css.topBar}`}>
+          <div className={`${isMobile ? 'mycelium' : ''} ${css.topBar}`}>
             {isMobile && (
               <div className={css.mobileTop}>
                 <div style={{ display: 'flex', gap: 'var(--spacing-m)', alignItems: 'center' }}>

@@ -7,17 +7,17 @@ export interface Props {
 }
 
 const { contractData } = Astro.props;
-const { schema, contract, protocol } = contractData ?? {};
+const { schema, contract, protocol, method } = contractData ?? {};
 
-const cardTitle = contract ? `RAEN Admin › ${contract}` : "RAEN Admin";
-const pageTitle = contract ? `${contract} ‹ RAEN Admin` : "RAEN Admin";
+const cardTitle = contract ? `Loam Home › ${contract}` : "Loam Home";
+const pageTitle = contract ? `${contract} ‹ Loam Home` : "Loam Home";
 
 const description = contract
-  ? `Explore ${protocol} smart contract ${contract} using an interactive admin panel`
-  : "RAEN makes it easy to explore contracts on NEAR. Just build with `raen` and try it!";
+  ? `${protocol} smart contract ${contract}${method ? `: ${method}` : ''}, powered by Loam Home`
+  : "Loam makes it easy to explore contracts on NEAR. Just build with `loam-cli` and try it!";
 
 // TODO: generate per-contrac/method images server-side
-const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
+const image = contract ? undefined : "https://loam.build/home/social-banner.png";
 ---
 
 <!DOCTYPE html>
@@ -31,7 +31,7 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={cardTitle} />
-    <meta property="og:url" content="https://raen.dev/admin" />
+    <meta property="og:url" content="https://loam.build/home" />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
     <meta property="og:type" content="website" />
@@ -52,7 +52,7 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
   </body>
 </html>
 <style is:global>
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Code+Pro&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap");
 
   @tailwind base;
   @tailwind components;
@@ -107,14 +107,10 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
   }
 
   html {
-    font-family: Inter, sans-serif;
+    font-family: Quicksand, system-ui, sans-serif;
   }
 
-  code {
-    font-family: "Source Code Pro", monospace;
-  }
-
-  .bokeh {
+  .mycelium {
     --bg: var(--dark);
     --fg: var(--white);
     --button-fg: var(--light);
@@ -124,7 +120,7 @@ const image = contract ? undefined : "https://raen.dev/admin/social-banner.png";
     --box-shadow-hover: 0px 4px 20px rgba(0, 0, 0, 0.25);
     --box-shadow-deep: 0px 4px 20px rgba(0, 0, 0, 0.5);
 
-    background: var(--bg) url(./circles.svg);
+    background: var(--bg) url(./mycelium.png);
     background-size: calc(max(100%, 1440px));
     background-repeat: no-repeat;
   }

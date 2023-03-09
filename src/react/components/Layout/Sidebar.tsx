@@ -8,7 +8,7 @@ export const Sidebar: React.FC<React.PropsWithChildren<{
 }>> = ({ showLogin }) => {
   const { isMobile } = useWindowDimensions()
   return (
-    <div className="bokeh flex flex-col h-screen w-fit px-10 min-w-[300px]">
+    <div className="mycelium flex flex-col h-screen w-fit px-10 min-w-[300px]">
       {!isMobile && (
         <div className={css.nav}>
           <div className="flex items-center justify-center py-5">
