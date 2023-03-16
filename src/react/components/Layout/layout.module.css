@@ -22,7 +22,7 @@
 
 .topBar {
   background-color: var(--white);
-  padding: var(--spacing-m) 0;
+  padding: 1rem;
 }
 @media (prefers-color-scheme: dark) {
   .topBar {
@@ -33,9 +33,8 @@
 .topBar > * {
   align-items: center;
   display: flex;
-  gap: var(--spacing-m);
+  gap: 1rem;
   justify-content: center;
-  padding: 0 var(--spacing-m);
 }
 
 
@@ -43,7 +42,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: 0.5rem;
 }
 
 .mobileSidebarWrap {
@@ -53,6 +52,10 @@
   left: 2.5%;
   z-index: 2;
   max-height: 50000vh;
+}
+
+.mobileSidebarWrap > * {
+  background-position: 2.5% -152px;
 }
 
 @keyframes fadeIn {
@@ -95,8 +98,9 @@
   padding: 0;
   margin: 0;
   line-height: 0;
-  width: var(--spacing-l);
-  height: var(--spacing-l);
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .menu .closed:after {

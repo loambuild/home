@@ -49,7 +49,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
           <div className={`${isMobile ? 'mycelium' : ''} ${css.topBar}`}>
             {isMobile && (
               <div className={css.mobileTop}>
-                <div style={{ display: 'flex', gap: 'var(--spacing-m)', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                   <button
                     aria-controls="mobileSidebarWrap"
                     className={css.menu}
@@ -87,8 +87,8 @@ export const Layout: React.FC<React.PropsWithChildren<{
             </div>
           )}
           <div
-            className="container"
-            style={{ marginTop: 'var(--spacing-l)' }}
+            className="container mx-auto p-4"
+            style={{ marginTop: '1.5rem' }}
             id="mainContent" // referenced by links in `Methods/Method.tsx`
             aria-live="polite"
           >

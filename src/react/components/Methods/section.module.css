@@ -3,7 +3,7 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  margin-top: var(--spacing-l);
+  margin-top: 1.5rem;
 }
 
 /* remove top margin on mobile menu */
@@ -35,7 +35,7 @@
   background-repeat: no-repeat;
   content: ' ';
   display: block;
-  width: var(--spacing-m);
+  width: 1rem;
   padding-bottom: calc(7 / 12 * 100%);
   transition: transform var(--animationTiming);
   transform: rotate(0deg);
@@ -60,14 +60,14 @@
   }
   100% {
     height: var(--radix-collapsible-content-height);
-    margin: var(--spacing-m) 0 var(--spacing-xxl);
+    margin: 1rem 0 2.5rem;
   }
 }
 
 @keyframes slideUp {
   0% {
     height: var(--radix-collapsible-content-height);
-    margin: var(--spacing-m) 0 var(--spacing-xxl);
+    margin: 1rem 0 2.5rem;
     visibility: visible;
   }
   100% {
@@ -79,7 +79,7 @@
 
 .content[data-state="open"] {
   animation: slideDown 300ms ease-out;
-  margin: var(--spacing-m) 0 var(--spacing-xxl);
+  margin: 1rem 0 2.5rem;
   visibility: visible;
 }
 
@@ -94,10 +94,10 @@
   border: none;
   border-radius: 0 var(--br-base) var(--br-base) 0;
   display: flex;
-  gap: var(--spacing-xs);
+  gap: 0.25rem;
   font-weight: var(--fw-regular);
   line-height: 1.8;
-  padding: 0 var(--spacing-m);
+  padding: 0 1rem;
   text-decoration: none;
 }
 

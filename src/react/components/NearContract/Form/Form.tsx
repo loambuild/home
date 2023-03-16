@@ -37,7 +37,7 @@ const Display: React.FC<React.PropsWithChildren<{
 
   return (
     <>
-      <h1>Result</h1>
+      <h1 className="text-2xl">Result</h1>
       {tx && (
         <p>
           View full transaction details on{' '}
@@ -183,7 +183,7 @@ export function Form() {
   if (!method || !schema) {
     return (
       <>
-        <h1 style={{ margin: 0 }}>
+        <h1 className="m-0 text-2xl">
           <WithWBRs word={contract} breakOn="." />
         </h1>
         {!method ? (

@@ -6,5 +6,5 @@
 .login button {
   align-items: center;
   display: flex;
-  gap: var(--spacing-m);
+  gap: 1rem;
 }

@@ -117,7 +117,7 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
 
     return (
       <>
-        <h1 style={{ margin: 0 }}>
+        <h1 className="m-0 text-2xl">
           <WithWBRs word={title} />
         </h1>
         {whyForbidden && <p className="errorHint">Forbidden: {whyForbidden}</p>}
@@ -141,10 +141,10 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
           onChange={setFormData}
           onSubmit={onSubmitWrapped}
         />
-        <div style={{ margin: 'var(--spacing-l) 0' }}>
+        <div style={{ margin: '1.5rem 0' }}>
           {loading ? <div className="loader" /> : error ? (
             <>
-              <h1>Error:</h1>
+              <h1 className="text-2xl">Error:</h1>
               <SyntaxHighlighter
                 style={dark}
                 language="json"
