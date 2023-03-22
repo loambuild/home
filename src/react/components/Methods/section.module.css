@@ -1,21 +1,5 @@
-.section label {
+.section {
   --animationTiming: 150ms;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
-/* remove top margin on mobile menu */
-.section:first-child label {
-  margin-top: 0;
-}
-
-.section h3 {
-  color: var(--gray-5);
-  font-size: 0.95em;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .chevron,

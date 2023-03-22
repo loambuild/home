@@ -40,7 +40,6 @@
   line-height: 0;
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 1.5rem;
 }
 
 .menu .closed:after {
@@ -55,6 +54,7 @@
 
 .menu .open:after {
   content: '⨉';
+  color: white;
   display: block;
   font-size: 1.5rem;
   position: relative;

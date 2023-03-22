@@ -46,10 +46,10 @@ export const Layout: React.FC<React.PropsWithChildren<{
       <div className="flex">
         {!isMobile && <Sidebar showLogin={showLogin} />}
         <div className="flex-1 h-full overflow-y-scroll oveflow-x-hidden overscroll-none">
-          <div className={`${isMobile ? 'mycelium' : ''} bg-white dark:bg-neutral-800 p-4`}>
+          <div className={`${isMobile ? 'mycelium' : 'bg-white dark:bg-neutral-800'} p-4`}>
             {isMobile && (
               <div className="flex gap-2 items-center justify-between mb-2">
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-5 items-center">
                   <button
                     aria-controls="mobileSidebarWrap"
                     className={css.menu}

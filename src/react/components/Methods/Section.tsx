@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getContractData } from "../../utils";
 import { Root as Collapsible, Trigger, Content } from '@radix-ui/react-collapsible';
 import { Method } from './Method'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 import type { ContractMethodGroup } from '../../../protocols/types'
 import css from './section.module.css';
 
@@ -14,6 +15,7 @@ import css from './section.module.css';
 export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = ({ heading, methods }) => {
   const [open, setOpen] = useState(true)
   const { nearContract, cwContract, method: currentMethod } = getContractData()
+  const { isMobile } = useWindowDimensions()
   const contract = nearContract ?? cwContract
 
   if (!contract) return null
@@ -23,8 +25,12 @@ export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = (
       open={open}
       className={`${css.section} ${!open && css.closed}`}
     >
-      <label className="flex">
-        <h3 className="uppercase text-gray-400 font-bold text-xl cursor-pointer">{heading}</h3>
+      <label className={
+          `flex justify-between cursor-pointer ${
+            isMobile ? '' : 'mt-4'
+          }`
+      }>
+        <h3 className="uppercase text-gray-400 font-bold text-lg tracking-widest cursor-pointer">{heading}</h3>
         <Trigger asChild>
           <button
             className={css.chevron}
