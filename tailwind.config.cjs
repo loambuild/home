@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         lightGreen: '#8DB73F',
         darkGreen: '#425239',
+        darkestGreen: 'rgb(37, 44, 31)',
         golden: '#E7BB00',
         lavendar: '#A39DAE',
         clay: '#7C3D24',

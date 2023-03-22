@@ -20,44 +20,6 @@
   overscroll-behavior: none;
 }
 
-.topBar {
-  background-color: var(--white);
-  padding: 1rem;
-}
-@media (prefers-color-scheme: dark) {
-  .topBar {
-    background-color: var(--gray-2);
-  }
-}
-
-.topBar > * {
-  align-items: center;
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-}
-
-
-.mobileTop {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.mobileSidebarWrap {
-  position: absolute;
-  overflow: hidden;
-  width: 90%;
-  left: 2.5%;
-  z-index: 2;
-  max-height: 50000vh;
-}
-
-.mobileSidebarWrap > * {
-  background-position: 2.5% -152px;
-}
-
 @keyframes fadeIn {
   0% {
     opacity: 0;

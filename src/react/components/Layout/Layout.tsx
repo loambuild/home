@@ -46,10 +46,10 @@ export const Layout: React.FC<React.PropsWithChildren<{
       <div className={css.layout}>
         {!isMobile && <Sidebar showLogin={showLogin} />}
         <div>
-          <div className={`${isMobile ? 'mycelium' : ''} ${css.topBar}`}>
+          <div className={`${isMobile ? 'mycelium' : ''} bg-white dark:bg-neutral-800 p-4`}>
             {isMobile && (
-              <div className={css.mobileTop}>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <div className="flex gap-2 items-center justify-between mb-2">
+                <div className="flex gap-2 items-center">
                   <button
                     aria-controls="mobileSidebarWrap"
                     className={css.menu}
@@ -59,11 +59,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
                     <span className={open ? css.open : css.closed} aria-hidden />
                     <span className="sr-only">{open ? 'Close Menu' : 'Open Menu'}</span>
                   </button>
-                  <Link to="/" style={{
-                    border: 'none',
-                    background: 'transparent',
-                    flex: '0 1 90px',
-                  }}>
+                  <Link to="/" className="border-0 shrink-1 basis-20">
                     <Logo className="p-0" />
                   </Link>
                 </div>
@@ -77,7 +73,7 @@ export const Layout: React.FC<React.PropsWithChildren<{
           </div>
           {isMobile && (
             <div
-              className={css.mobileSidebarWrap}
+              className={`${css.mobileSidebarWrap} absolute overflow-hidden width-9/10 left-[2.5%] z-20 h-full max-h-screen`}
               data-state={open ? 'open' : 'closed'}
               id="mobileSidebarWrap"
               aria-live="polite"
@@ -88,7 +84,6 @@ export const Layout: React.FC<React.PropsWithChildren<{
           )}
           <div
             className="container mx-auto p-4"
-            style={{ marginTop: '1.5rem' }}
             id="mainContent" // referenced by links in `Methods/Method.tsx`
             aria-live="polite"
           >
