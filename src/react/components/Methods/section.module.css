@@ -30,8 +30,6 @@
 }
 
 .content {
-  border-left: 2px solid var(--black);
-  overflow: hidden;
   transition-delay: 300ms;
   transition-property: visibility;
   transition-duration: 0ms;
@@ -72,27 +70,3 @@
   margin: 0;
   visibility: hidden;
 }
-
-.content > * {
-  align-items: center;
-  border: none;
-  border-radius: 0 var(--br-base) var(--br-base) 0;
-  display: flex;
-  gap: 0.25rem;
-  font-weight: var(--fw-regular);
-  line-height: 1.8;
-  padding: 0 1rem;
-  text-decoration: none;
-}
-
-.content a:hover,
-.content a:focus {
-  text-decoration: none;
-}
-
-/* currently-selected method */
-.content div {
-  background: var(--black);
-  font-weight: var(--fw-bold);
-}
-

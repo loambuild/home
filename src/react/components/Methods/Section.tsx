@@ -40,7 +40,7 @@ export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = (
           </button>
         </Trigger>
       </label>
-      <Content className={`${css.content} pl-4 mt-2 mb-4 list-none text-lg font-medium text-gray-400 border-l-2 border-l-black flex flex-col`} forceMount>
+      <Content className={`${css.content} mt-2 mb-4 list-none text-lg font-medium text-gray-400 border-l-2 border-l-black flex flex-col overflow-hidden`} forceMount>
         {methods.map((method, i) =>
           <Method
             key={i}

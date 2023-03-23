@@ -6,7 +6,6 @@ import useNear from '../../hooks/useNear'
 import { getDefinition, canCall } from '../../../protocols/near'
 import { getContractData } from '../../utils'
 import type { ContractMethod } from '../../../protocols/types'
-import css from './methods.module.css';
 import { Crown } from './Crown'
 
 const Tip: React.FC<{ method: ContractMethod }> = ({ method }) => {
@@ -34,9 +33,9 @@ const Tip: React.FC<{ method: ContractMethod }> = ({ method }) => {
       </Trigger>
       <Portal>
         <Content className="tooltip">
-          <div className={css.restrictedTo}>
+          <div className="text-neutral-500 flex gap-1">
             <span>Restricted to:</span>
-            <Crown fill="var(--gray-6)" />
+            <Crown className="basis-4 shrink-0 fill-neutral-500" />
           </div>
           <div>
             {restrictedTo}
@@ -73,7 +72,7 @@ export const Method: React.FC<{
   if (isCurrentMethod) {
     return (
       <div
-        className={allowed ? undefined : css.forbidden}
+        className="flex items-center border-0 leading-loose px-4 gap-1 text-white rounded-r-md bg-black font-bold"
         title={allowed ? undefined : `Forbidden: ${whyForbidden}`}
       >
         {snake(method.title)}
@@ -86,7 +85,7 @@ export const Method: React.FC<{
     <Link
       aria-controls="mainContent"
       to={`/${protocol}/${contract}/${method.link}`}
-      className={`${allowed ? undefined : css.forbidden} no-underline py-1`}
+      className={`${allowed ? 'text-white' : 'text-neutral-400'} flex items-center border-0 leading-loose px-4 gap-1 text-white no-underline`}
       title={allowed ? undefined : `Forbidden: ${whyForbidden}`}
     >
       {snake(method.title)}
