@@ -125,6 +125,14 @@ const image = contract ? undefined : "https://loam.build/home/social-banner.png"
     background-repeat: no-repeat;
   }
 
+  .ellipsis {
+    display: block;
+    max-width: 9rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   /* override some bootstrap styles */
   legend#root_args__title .required,
   legend#root_options__title .required {

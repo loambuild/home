@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { ConnectedWalletAccount } from 'near-api-js'
+import { useEffect, useState } from "react"
+import type { ConnectedWalletAccount } from 'near-api-js'
 import useNear from "../../hooks/useNear"
 import { Dropdown } from ".."
 import { Wallet } from './Wallet'
-import css from './nearlogin.module.css'
 
 export function NearLogin() {
   const { currentUser, signIn, signOut } = useNear()
@@ -11,7 +10,7 @@ export function NearLogin() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    currentUser.then(u => {
+    currentUser && currentUser.then(u => {
       setUser(u)
       setLoaded(true)
     })
@@ -19,13 +18,13 @@ export function NearLogin() {
 
   return (
     <div
-      className="bg-black text-white flex items-center justify-center rounded-lg p-3 text-lg mb-4"
+      className="flex justify-around "
       style={{ visibility: loaded ? undefined : 'hidden' }}
     >
       {user ? (
         <Dropdown
           trigger={
-            <button title={user.accountId}>
+            <button title={user.accountId} className="bg-black text-white flex items-center gap-3 px-4 py-2 text-lg rounded-lg">
               <Wallet />
               <span className="ellipsis">
                 {user.accountId}

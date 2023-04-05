@@ -1,32 +1,11 @@
 .trigger {
   background-image: url(./angle-down.svg);
   background-repeat: no-repeat;
-  background-position: bottom 50% right 0.5rem;
+  background-position: bottom 50% right 0.75rem;
   background-size: 0.5rem;
-  padding-right: 2.5rem;
+  padding-right: 2rem;
 }
 
 .arrow {
   fill: var(--button-bg);
-}
-
-.content {
-  border-radius: var(--br-small);
-  box-shadow: var(--box-shadow-deep);
-}
-
-.item {
-  border: none;
-  border-radius: var(--br-small);
-  background: var(--button-bg);
-  box-shadow: var(--box-shadow);
-  color: var(--button-fg);
-  cursor: pointer;
-  padding: 0.25rem 1rem;
-}
-
-.item:focus,
-.item:hover {
-  box-shadow: var(--box-shadow-hover);
-  outline: none;
 }

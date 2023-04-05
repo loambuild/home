@@ -13,11 +13,11 @@ export const Dropdown: React.FC<React.PropsWithChildren<{
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className={css.content}>
+        <DropdownMenu.Content className="rounded shadow-lg bg-black text-white">
           {items.map(({ className, ...props }, i) => (
             <DropdownMenu.Item
               key={i}
-              className={`${css.item} ${className}`}
+              className={`cursor-pointer border-1 border-transparent py-2 px-4 hover:border-white ${className}`}
               {...props}
             />
           ))}
