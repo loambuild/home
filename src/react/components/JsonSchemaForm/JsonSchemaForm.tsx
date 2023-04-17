@@ -117,7 +117,7 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
 
     return (
       <>
-        <h1 className="m-0 text-2xl">
+        <h1 className="m-0 text-4xl">
           <WithWBRs word={title} />
         </h1>
         {whyForbidden && <p className="errorHint">Forbidden: {whyForbidden}</p>}

@@ -1,12 +1,11 @@
 import { NearLogin, Logo, Methods } from '..'
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import css from './sidebar.module.css'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
-export const Sidebar: React.FC<React.PropsWithChildren<{
-  showLogin: 'near' | false,
-}>> = ({ showLogin }) => {
+export const Sidebar = () => {
   const { isMobile } = useWindowDimensions()
+  const { protocol } = useParams()
   return (
     <div className={
         `mycelium flex flex-col w-fit p-5 min-w-[300px] ${
@@ -22,7 +21,7 @@ export const Sidebar: React.FC<React.PropsWithChildren<{
               <Logo className="p-0" />
             </Link>
           </div>
-          {showLogin === 'near' && <NearLogin />}
+          {protocol === 'near' && <NearLogin />}
         </div>
       )}
       <Methods />

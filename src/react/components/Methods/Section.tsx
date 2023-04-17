@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getContractData } from "../../utils";
+import { useParams } from "react-router-dom";
 import { Root as Collapsible, Trigger, Content } from '@radix-ui/react-collapsible';
 import { Method } from './Method'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
@@ -14,9 +14,8 @@ import css from './section.module.css';
  */
 export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = ({ heading, methods }) => {
   const [open, setOpen] = useState(true)
-  const { nearContract, cwContract, method: currentMethod } = getContractData()
+  const { contract, method: currentMethod, protocol } = useParams()
   const { isMobile } = useWindowDimensions()
-  const contract = nearContract ?? cwContract
 
   if (!contract) return null
 
@@ -47,7 +46,7 @@ export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = (
             contract={contract}
             isCurrentMethod={method.link === currentMethod}
             method={method}
-            protocol={nearContract ? 'near' : 'cw'}
+            protocol={protocol}
           />
         )}
       </Content>

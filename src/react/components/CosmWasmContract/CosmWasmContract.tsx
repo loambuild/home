@@ -1,13 +1,12 @@
 import { useMemo, useState } from 'react'
-import { Layout } from ".."
+import { useParams } from 'react-router-dom'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { anOldHope as dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import useCosmWasm from '../../hooks/useCosmWasm';
-import { getContractData } from '../../utils'
 import { JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
 
 export function CosmWasmContract() {
-  const { cwContract: contract, method } = getContractData()
+  const { contract, method } = useParams()
   const { schema } = useCosmWasm()
   const [result, setResult] = useState<string>()
   const [category, ref] = (method ?? '').split('::')
@@ -20,7 +19,7 @@ export function CosmWasmContract() {
 
   if (!ref) {
     return (
-      <Layout showLogin={false}>
+      <>
         <h1>Example CW Schema</h1>
         <p>
           Taken from <a href="https://github.com/CosmWasm/cw-plus">cw-plus</a> contract {schema.contract_name} v{schema.contract_version}
@@ -32,12 +31,12 @@ export function CosmWasmContract() {
           children={JSON.stringify(schema, null, 2)}
           wrapLongLines
         />
-      </Layout>
+      </>
     )
   }
 
   return (
-    <Layout showLogin={false}>
+    <>
       <JsonSchemaForm
         title={schema.contract_name}
         schema={{
@@ -58,6 +57,6 @@ export function CosmWasmContract() {
           </>
         )}
       </JsonSchemaForm>
-    </Layout>
+    </>
   )
 }
