@@ -1,20 +1,25 @@
 ---
 import type { SerializableContractData } from "../protocols/types";
+import snake from "to-snake-case";
 import './bootstrap.css'
 
 export interface Props {
   contractData?: SerializableContractData | undefined;
 }
 
+const method = snake(Astro.params.method ?? '');
 const { contractData } = Astro.props;
-const { contract, protocol, method } = contractData ?? {};
+const { contract, protocol } = contractData ?? {};
 
-const cardTitle = contract ? `Loam Home › ${contract}` : "Loam Home";
-const pageTitle = contract ? `${contract} ‹ Loam Home` : "Loam Home";
+// cardTitle needs to read clearly in a Slack/Twitter/whatever preview
+const cardTitle = `Loam Home${contract ? ` › ${contract}` : ''}${method ? ` › ${method}` : ''}`
+
+// pageTitle needs to be useful in a browser tab, even when tabs get narrow
+const pageTitle = `${method ? `${method} ‹ ` : ''}${contract ? `${contract} ‹ ` : ''}Loam Home`;
 
 const description = contract
-  ? `${protocol} smart contract ${contract}${method ? `: ${method}` : ''}, powered by Loam Home`
-  : "Loam makes it easy to explore contracts on NEAR. Just build with `loam-cli` and try it!";
+  ? `${protocol} smart contract${method ? ' method' : ''} ${contract}${method ? `/${method}` : ''}, powered by Loam Home`
+  : "Loam makes it easy to explore smart contracts. Just build with `loam-cli` and try it!";
 
 // TODO: generate per-contrac/method images server-side
 const image = contract ? undefined : "https://loam.build/home/social-banner.png";

@@ -37,7 +37,7 @@ type MethodDefinition = {
   type?: string
 }
 
-export async function getContractData(contract?: string, method?: string): Promise<SerializableContractData | undefined> {
+export async function getContractData(contract?: string): Promise<SerializableContractData | undefined> {
   if (!contract) return undefined;
   const schema = await fetchSchema(contract)
 
@@ -73,7 +73,6 @@ export async function getContractData(contract?: string, method?: string): Promi
 
   return {
     contract,
-    method,
     methods,
     protocol: 'NEAR',
     schema,
