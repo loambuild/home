@@ -1,10 +1,10 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { getData } from "../../../protocols/near";
+import { getContractData } from "../../../protocols/near";
 import { ClientSideEntryPoint } from "../../../react";
 
 const { contract, method } = Astro.params;
-const data = await getData(contract, method);
+const data = await getContractData(contract, method);
 
 if (!contract || !data) return Astro.redirect("/404");
 ---

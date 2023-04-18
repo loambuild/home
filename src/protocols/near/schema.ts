@@ -37,7 +37,7 @@ type MethodDefinition = {
   type?: string
 }
 
-export async function getData(contract?: string, method?: string): Promise<SerializableContractData | undefined> {
+export async function getContractData(contract?: string, method?: string): Promise<SerializableContractData | undefined> {
   if (!contract) return undefined;
   const schema = await fetchSchema(contract)
 
@@ -74,11 +74,9 @@ export async function getData(contract?: string, method?: string): Promise<Seria
   return {
     contract,
     method,
-    protocol: 'NEAR',
-    schema: method
-      ? { ...schema, $ref: `#/definitions/${method}` }
-      : schema,
     methods,
+    protocol: 'NEAR',
+    schema,
   }
 }
 
@@ -91,7 +89,7 @@ function hasContractMethod(schema: JSONSchema, m: string, equalTo?: "change" | "
   return def.contractMethod === equalTo
 }
 
-export function getMethod(schema: JSONSchema, m?: string | undefined): JSONSchema | undefined {
+export function getMethodSchema(schema: JSONSchema, m?: string | undefined): JSONSchema | undefined {
   if (!m) return undefined
   if (!hasContractMethod(schema, m)) return undefined
   return {

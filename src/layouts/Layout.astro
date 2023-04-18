@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const { contractData } = Astro.props;
-const { schema, contract, protocol, method } = contractData ?? {};
+const { contract, protocol, method } = contractData ?? {};
 
 const cardTitle = contract ? `Loam Home › ${contract}` : "Loam Home";
 const pageTitle = contract ? `${contract} ‹ Loam Home` : "Loam Home";

@@ -6,7 +6,7 @@ import { JsonRpcProvider, FinalExecutionStatus, FinalExecutionStatusBasic } from
 import snake from "to-snake-case";
 import { getContractData, prettifyJsonString } from "../../utils"
 import useNear from '../../hooks/useNear'
-import { canCall, getDefinition, getMethod } from '../../../protocols/near'
+import { canCall, getDefinition, getMethodSchema } from '../../../protocols/near'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import { WithWBRs, JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
 
@@ -85,7 +85,7 @@ export function NearContract() {
   const [tx, setTx] = useState<string>()
   const [logs, setLogs] = useState<string[]>()
   const [whyForbidden, setWhyForbidden] = useState<string>()
-  const schema = getMethod(contractData.schema, method)
+  const schema = getMethodSchema(contractData.schema, method)
   const nonReactParams = window.location.search
 
   // if redirected back to this page from NEAR Wallet confirmation, check results
