@@ -23,7 +23,7 @@
     "react": "*",
     "react-dom": "*",
     "react-markdown": "^8.0.5",
-    "react-router-dom": "^6.8.1",
+    "react-router-dom": "^6.9.0",
     "react-syntax-highlighter": "^15.5.0",
     "tailwindcss": "*",
     "to-snake-case": "^1.0.0"
