@@ -7,7 +7,6 @@ import { useSearchParams } from "react-router-dom"
 import TextareaWidget from "@rjsf/core/lib/components/widgets/TextareaWidget";
 import css from "./form.module.css"
 import type { JSONSchema } from "../../../protocols/types"
-import { WithWBRs } from '..'
 import { prettifyJsonString } from "../../utils"
 
 const Textarea = (props: WidgetProps) => (
@@ -118,7 +117,7 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
     return (
       <>
         <h1 className="m-0 text-4xl">
-          <WithWBRs word={title} />
+          {title}
         </h1>
         {whyForbidden && <p className="errorHint">Forbidden: {whyForbidden}</p>}
         <FormComponent

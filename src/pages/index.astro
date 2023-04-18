@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Logo, ContractNameForm, WithWBRs } from "../react/components";
+import { Logo, ContractNameForm } from "../react/components";
 
 const featuredContracts = [
   [
@@ -70,7 +70,7 @@ const featuredContracts = [
           <li>
             <h3>
               <a href={`/near/${contract}`}>
-                <WithWBRs word={contract} breakOn="." />
+                {contract}
               </a>
             </h3>
             <p>{description}</p>

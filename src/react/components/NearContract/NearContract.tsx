@@ -8,7 +8,7 @@ import { getContractData, prettifyJsonString } from "../../utils"
 import useNear from '../../hooks/useNear'
 import { canCall, getDefinition, getMethodSchema } from '../../../protocols/near'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
-import { WithWBRs, JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
+import { JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
 
 function isBasic(status: FinalExecutionStatusBasic | FinalExecutionStatus): status is FinalExecutionStatusBasic {
   return status === 'NotStarted' ||
@@ -183,15 +183,15 @@ export function NearContract() {
     return (
       <>
         <h1 className="m-0 text-4xl">
-          <WithWBRs word={contract} breakOn="." />
+          {contract}
         </h1>
         {!method ? (
           <p>
-            Inspect <strong><WithWBRs word={contract} breakOn="." /></strong> using a schema built with <a href="https://raen.dev/admin">RAEN</a> and stored on <a href="https://near.org">NEAR</a>. Select a method from {isMobile ? 'the menu above' : 'the sidebar'} to get started.
+            Inspect <strong>{contract}</strong> using a schema built with <a href="https://raen.dev/admin">RAEN</a> and stored on <a href="https://near.org">NEAR</a>. Select a method from {isMobile ? 'the menu above' : 'the sidebar'} to get started.
           </p>
         ) : !schema && (
           <p>
-            Unknown method <strong><WithWBRs word={snake(method) ?? ''} /></strong> 🤔
+            Unknown method <strong>{snake(method)}</strong> 🤔
           </p>
         )}
       </>
