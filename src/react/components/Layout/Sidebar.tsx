@@ -1,5 +1,5 @@
 import { NearLogin, Logo, Methods } from '..'
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import css from './sidebar.module.css'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 
@@ -17,9 +17,9 @@ export const Sidebar = () => {
       {!isMobile && (
         <div className={css.nav}>
           <div className="flex items-center justify-center py-5">
-            <Link to="/" style={{ border: 'none', background: 'transparent' }}>
+            <a href="/" style={{ border: 'none', background: 'transparent' }}>
               <Logo className="p-0" />
-            </Link>
+            </a>
           </div>
           {protocol === 'near' && <NearLogin />}
         </div>
