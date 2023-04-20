@@ -17,7 +17,7 @@
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@radix-ui/react-tooltip": "^1.0.5",
     "@rjsf/core": "^4.2.0",
-    "astro": "^2.1.0",
+    "astro": "^2.1.8",
     "json-schema": "*",
     "near-api-js": "*",
     "react": "*",
