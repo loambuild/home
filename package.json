@@ -16,7 +16,7 @@
     "@radix-ui/react-collapsible": "1.0.2",
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@radix-ui/react-tooltip": "^1.0.5",
-    "@rjsf/core": "^4.2.0",
+    "@rjsf/core": "^5.4.0",
     "astro": "^2.1.0",
     "json-schema": "*",
     "near-api-js": "*",
