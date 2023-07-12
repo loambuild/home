@@ -2,6 +2,7 @@
 import type { SerializableContractData } from "../protocols/types";
 import snake from "to-snake-case";
 import './bootstrap.css'
+import WebComponents from "../web-components/components/index.astro"
 
 export interface Props {
   contractData?: SerializableContractData | undefined;
@@ -51,6 +52,7 @@ const image = contract ? undefined : "https://loam.build/home/social-banner.png"
       // work around near-api-js lack of browser support
       window.process = window.process ?? { env: {} }
     </script>
+    <WebComponents />
   </head>
   <body class="bg-slate-200 dark:bg-black">
     <slot />
