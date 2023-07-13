@@ -1,0 +1,27 @@
+<script is:inline>
+  class WithWBRs extends HTMLElement {
+    constructor() {
+      super()
+    }
+
+    connectedCallback() {
+      this.attachShadow({ mode: "open" })
+      this.update()
+    }
+
+    update() {
+      const word = this.getAttribute("word") || ""
+      const breakOn = this.getAttribute("breakOn") || "_"
+      const template = document.createElement("template")
+
+      template.innerHTML = word
+        .split(breakOn)
+        .map((piece, i) => `${i !== 0 ? `${breakOn}<wbr />` : ""}${piece}`)
+        .join("")
+
+      this.shadowRoot.textContent = ""
+      this.shadowRoot.appendChild(template.content.cloneNode(true))
+    }
+  }
+  customElements.define("wc-with-wbrs", WithWBRs)
+</script>
