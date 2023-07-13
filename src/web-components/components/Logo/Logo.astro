@@ -5,17 +5,11 @@
     }
 
     connectedCallback() {
-      this.attachShadow({ mode: "open" })
-      this.update()
-    }
-
-    update() {
       const wrapperClass = this.getAttribute("class") || "p-5"
       const width = this.getAttribute("width") || "90px"
       const height = this.getAttribute("height") || "auto"
-      const template = document.createElement("template")
 
-      template.innerHTML = `
+      this.innerHTML = `
         <div class="${wrapperClass}">
           <svg width="${width}" height="${height}" viewBox="0 0 411.4 217.5" fill="#8DB73F">
             <title>Loam</title>
@@ -56,8 +50,6 @@
           </svg>
         </div>
         `
-      this.shadowRoot.textContent = ""
-      this.shadowRoot.appendChild(template.content.cloneNode(true))
     }
   }
   customElements.define("wc-logo", Logo)
