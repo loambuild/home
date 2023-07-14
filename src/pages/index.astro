@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import { ContractNameForm } from "../react/components"
 
 const featuredContracts = [
   [
@@ -37,7 +36,7 @@ const featuredContracts = [
           href="/near/counter.raendev.testnet">counter.raendev.testnet</a
         >)
       </p>
-      <ContractNameForm protocol="NEAR" client:load />
+      <wc-contract-name-form protocol="NEAR"></wc-contract-name-form>
     </div>
     <div>
       <!-- wrapping div is needed for styling! -->
