@@ -117,7 +117,11 @@ export function NearContract() {
       setWhyForbidden(undefined)
     } else {
       (async () => {
-        const [, why] = await canCall(contractData, method, (await currentUser)?.accountId)
+        const user = await currentUser
+        if(!user) {
+          return
+        }
+        const [, why] = await canCall(contractData, method, user.accountId)
         setWhyForbidden(why)
       })()
     }
