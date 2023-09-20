@@ -11,17 +11,18 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "*",
+    "@astrojs/node": "^6.0.0",
+    "@astrojs/react": "^3.0.2",
     "@astrojs/tailwind": "*",
     "@radix-ui/react-collapsible": "1.0.2",
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@radix-ui/react-tooltip": "^1.0.5",
     "@rjsf/core": "^4.2.0",
-    "astro": "^2.1.0",
+    "astro": "^3",
     "json-schema": "*",
     "near-api-js": "*",
-    "react": "*",
-    "react-dom": "*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-markdown": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-syntax-highlighter": "^15.5.0",
@@ -29,12 +30,13 @@
     "to-snake-case": "^1.0.0"
   },
   "devDependencies": {
-    "@astrojs/netlify": "^2.2.0",
+    "@astrojs/netlify": "^3.0.1",
     "@types/node": "*",
-    "@types/react": "*",
-    "@types/react-dom": "*",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "@types/react-syntax-highlighter": "^15.5.4",
     "@types/to-snake-case": "^1.0.0",
-    "ajv": "*"
+    "ajv": "*",
+    "prettier": "latest"
   }
 }
