@@ -73,7 +73,7 @@ export function init(contract: string): NearContractInterface {
   })
 
   // @ts-expect-error naj still has bad typings
-  const wallet = new naj.WalletConnection(near)
+  const wallet = new naj.WalletConnection(near, 'loam')
 
   /**
    * Only return current user if they're authenticated against the given contract.

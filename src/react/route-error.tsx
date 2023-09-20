@@ -1,12 +1,9 @@
 import { useRouteError } from "react-router-dom";
-import { ErrorResponse } from "@remix-run/router"
 
 function ErrorPage() {
   const error = useRouteError();
   console.error(error);
-  const message = error instanceof ErrorResponse
-    ? error.statusText
-    : error instanceof Error
+  const message = error instanceof Error
       ? error.message
       : String(error)
 

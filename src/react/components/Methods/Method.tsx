@@ -62,6 +62,10 @@ export const Method: React.FC<{
     if (!currentUser || !contractData) return
     (async () => {
       const user = await currentUser
+      if(!user) {
+        setAllowed(undefined)
+        return
+      }
       canCall(contractData, method.title, user?.accountId).then(can => {
         setAllowed(can[0])
         setWhyForbidden(can[1] || undefined)

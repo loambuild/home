@@ -117,7 +117,11 @@ export function NearContract() {
       setWhyForbidden(undefined)
     } else {
       (async () => {
-        const [, why] = await canCall(contractData, method, (await currentUser)?.accountId)
+        const user = await currentUser
+        if(!user) {
+          return
+        }
+        const [, why] = await canCall(contractData, method, user.accountId)
         setWhyForbidden(why)
       })()
     }
@@ -137,11 +141,11 @@ export function NearContract() {
     if (!near || !contract || !method) return
     if (getDefinition(contractData.schema, method)?.contractMethod === 'view') {
       const account = await near.account(contract)
-      const res = await account.viewFunction(
-        contract,
-        snake(method),
-        formData?.args
-      )
+      const res = await account.viewFunction({
+        contractId: contract,
+        methodName: snake(method),
+        args: formData?.args,
+      })
       setResult(JSON.stringify(res, null, 2));
     } else {
       const user = await currentUser
