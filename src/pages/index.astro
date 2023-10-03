@@ -1,6 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Logo, ContractNameForm, WithWBRs } from "../react/components";
+import Layout from "../layouts/Layout.astro"
 
 const featuredContracts = [
   [
@@ -25,7 +24,7 @@ const featuredContracts = [
 <Layout>
   <div class="mycelium text-center">
     <div class="text-left">
-      <Logo />
+      <wc-logo></wc-logo>
     </div>
     <div class="max-w-[770px] mx-auto px-4 pt-10">
       <h1 class="text-white text-5xl">
@@ -37,7 +36,7 @@ const featuredContracts = [
           href="/near/counter.raendev.testnet">counter.raendev.testnet</a
         >)
       </p>
-      <ContractNameForm protocol="NEAR" client:load />
+      <wc-contract-name-form protocol="NEAR"></wc-contract-name-form>
     </div>
     <div>
       <!-- wrapping div is needed for styling! -->
@@ -70,7 +69,7 @@ const featuredContracts = [
           <li>
             <h3>
               <a href={`/near/${contract}`}>
-                <WithWBRs word={contract} breakOn="." />
+                <wc-with-wbrs word={contract} breakOn="." />
               </a>
             </h3>
             <p>{description}</p>
