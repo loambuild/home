@@ -72,7 +72,6 @@ export function init(contract: string): NearContractInterface {
       : new naj.keyStores.BrowserLocalStorageKeyStore()
   })
 
-  
   const wallet = new naj.WalletConnection(near, 'loam')
 
   /**

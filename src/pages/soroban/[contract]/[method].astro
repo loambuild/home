@@ -1,0 +1,15 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getContractData } from "../../../protocols/soroban";
+import { ClientSideEntryPoint } from "../../../react";
+
+const { contract, method: _ } = Astro.params;
+const data = await getContractData(contract);
+
+
+if (!contract || !data) return Astro.redirect("/404");
+---
+
+<Layout contractData={data}>
+  <ClientSideEntryPoint client:only="react" />
+</Layout>
