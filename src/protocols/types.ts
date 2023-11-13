@@ -1,10 +1,12 @@
-import type { JSONSchemaType } from "ajv/dist/2019"
+import type { RJSFSchema } from "@rjsf/utils"
 
 // actual JSONSchema seems to always require 'type' (unless multiple libraries
 // are malformed), but CosmWasm's variant either uses 'type' XOR 'oneOf'
 export type JSONSchema =
-  Omit<JSONSchemaType<unknown>, 'type'> |
-  Omit<JSONSchemaType<unknown>, 'oneOf'>
+  Omit<RJSFSchema, 'type'> |
+  Omit<RJSFSchema, 'oneOf'>
+
+// export type JSONSchema = RJSFSchema;
 
 export type ContractMethod = {
   title: string
@@ -18,7 +20,7 @@ export interface ContractMethodGroup {
 
 export interface SerializableContractData {
   contract: string
-  protocol: 'NEAR' | 'CosmWasm'
+  protocol: 'NEAR' | 'CosmWasm' | 'Soroban'
   schema: JSONSchema
   methods: ContractMethodGroup[]
 }

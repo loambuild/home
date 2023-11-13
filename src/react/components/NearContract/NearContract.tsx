@@ -2,13 +2,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from 'react-router-dom'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { anOldHope as dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import { JsonRpcProvider, FinalExecutionStatus, FinalExecutionStatusBasic } from 'near-api-js/lib/providers';
+import { JsonRpcProvider, type FinalExecutionStatus, FinalExecutionStatusBasic } from 'near-api-js/lib/providers';
 import snake from "to-snake-case";
 import { getContractData, prettifyJsonString } from "../../utils"
 import useNear from '../../hooks/useNear'
 import { canCall, getDefinition, getMethodSchema } from '../../../protocols/near'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
-import { WithWBRs, JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
+import { WithWBRs, JsonSchemaForm, type JsonSchemaFormDataWrapped } from '..'
 
 function isBasic(status: FinalExecutionStatusBasic | FinalExecutionStatus): status is FinalExecutionStatusBasic {
   return status === 'NotStarted' ||

@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "cd node_modules/soroban-client && yarn install --ignore-scripts && yarn build:node"
   },
   "dependencies": {
     "@astrojs/node": "^6.0.0",
@@ -17,15 +18,17 @@
     "@radix-ui/react-collapsible": "1.0.2",
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@radix-ui/react-tooltip": "^1.0.5",
-    "@rjsf/core": "^4.2.0",
+    "@rjsf/core": "^5.13.0",
+    "@rjsf/utils": "^5.13.6",
+    "@rjsf/validator-ajv8": "^5.13.6",
     "astro": "^3.4.1",
-    "json-schema": "*",
     "near-api-js": "*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-syntax-highlighter": "^15.5.0",
+    "soroban-client": "AhaLabs/js-soroban-client#feat/schema",
     "tailwindcss": "3.2.7",
     "to-snake-case": "^1.0.0"
   },

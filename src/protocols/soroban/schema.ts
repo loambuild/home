@@ -1,10 +1,16 @@
 import { init } from "."
 import type { SerializableContractData, ContractMethodGroup, JSONSchema } from '../types'
-
+import { ContractSpec } from "soroban-client"
 
 export async function fetchSchema(contract: string): Promise<JSONSchema> {
   if (!contract) throw new Error(`invalid contract: "${contract}"`)
-  return fetch(`https://api.raen.dev/${contract}.json`).then(res => res.json())
+  let res = await fetch(`https://soroban-contract-spec.shuttleapp.rs/contract/${contract}`);
+  debugger;
+  let entries = await res.json();
+  debugger;
+  let schema = new ContractSpec(entries).JsonSchema() as JSONSchema;
+  console.log(JSON.stringify(schema));
+  return schema
 }
 
 function hasContractMethodProperty(obj: {}): obj is { contractMethod: "change" | "view" } {
@@ -38,9 +44,9 @@ type MethodDefinition = {
 }
 
 export async function getContractData(contract?: string): Promise<SerializableContractData | undefined> {
-  debugger;
   if (!contract) return undefined;
   const schema = await fetchSchema(contract)
+  debugger;
 
   const changeMethods = Object.keys(schema?.definitions ?? {}).filter(m =>
     hasContractMethod(schema, m, "change")
@@ -54,7 +60,7 @@ export async function getContractData(contract?: string): Promise<SerializableCo
 
   if (viewMethods.length) {
     methods.push({
-      heading: "View Methods",
+      heading: "Methods",
       methods: viewMethods.map(m => ({
         title: m,
         link: m,
@@ -75,7 +81,7 @@ export async function getContractData(contract?: string): Promise<SerializableCo
   return {
     contract,
     methods,
-    protocol: 'NEAR',
+    protocol: 'Soroban',
     schema,
   }
 }

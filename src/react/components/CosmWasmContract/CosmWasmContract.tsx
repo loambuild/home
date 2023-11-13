@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { anOldHope as dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import useCosmWasm from '../../hooks/useCosmWasm';
-import { JsonSchemaForm, JsonSchemaFormDataWrapped } from '..'
+import { JsonSchemaForm, type JsonSchemaFormDataWrapped } from '..'
 
 export function CosmWasmContract() {
   const { contract, method } = useParams()

@@ -5,6 +5,7 @@ import { Method } from './Method'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
 import type { ContractMethodGroup } from '../../../protocols/types'
 import css from './section.module.css';
+import { isProtocol } from "./utils";
 
 /**
  * A collapsible Sidebar section. Normally, you need to pass both a `heading`
@@ -14,7 +15,8 @@ import css from './section.module.css';
  */
 export const Section: React.FC<React.PropsWithChildren<ContractMethodGroup>> = ({ heading, methods }) => {
   const [open, setOpen] = useState(true)
-  const { contract, method: currentMethod, protocol } = useParams()
+  const { contract, method: currentMethod, protocol: protocol_ } = useParams()
+  const protocol = isProtocol(protocol_!);
   const { isMobile } = useWindowDimensions()
 
   if (!contract) return null

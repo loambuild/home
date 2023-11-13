@@ -7,6 +7,7 @@ import { getDefinition, canCall } from '../../../protocols/near'
 import { getContractData } from '../../utils'
 import type { ContractMethod } from '../../../protocols/types'
 import { Crown } from './Crown'
+import type { Protocols } from "./utils";
 
 const Tip: React.FC<{ method: ContractMethod }> = ({ method }) => {
   const { nearContract, schema } = getContractData();
@@ -51,7 +52,7 @@ export const Method: React.FC<{
   contract?: string
   isCurrentMethod: boolean
   method: ContractMethod
-  protocol: 'near' | 'cw'
+  protocol: Protocols
 }> = ({ contract, isCurrentMethod, method, protocol }) => {
   const { currentUser } = useNear()
   const contractData = getContractData()
@@ -63,7 +64,7 @@ export const Method: React.FC<{
     (async () => {
       const user = await currentUser
       if(!user) {
-        setAllowed(undefined)
+        setAllowed(false)
         return
       }
       canCall(contractData, method.title, user?.accountId).then(can => {

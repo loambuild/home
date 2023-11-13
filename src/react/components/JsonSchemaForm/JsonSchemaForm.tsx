@@ -1,18 +1,19 @@
-import FormComponent, { WidgetProps } from "@rjsf/core";
+// import FormComponent, { WidgetProps } from "@rjsf/core";
+import type { RJSFSchema } from "@rjsf/utils";
+import Form from "@rjsf/core";
+import validator from "@rjsf/validator-ajv8";
 import { useEffect, useMemo, useState } from "react"
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { anOldHope as dark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import { useSearchParams } from "react-router-dom"
-// @ts-expect-error untyped boo!
-import TextareaWidget from "@rjsf/core/lib/components/widgets/TextareaWidget";
+/// // @ts-expect-error untyped boo!
+// import TextareaWidget from "@rjsf/core/components/widgets/TextareaWidget";
 import css from "./form.module.css"
 import type { JSONSchema } from "../../../protocols/types"
 import { WithWBRs } from '..'
 import { prettifyJsonString } from "../../utils"
 
-const Textarea = (props: WidgetProps) => (
-  <TextareaWidget {...props} options={{ rows: 1, ...props.options }} />
-)
+
 
 type Data = Record<string, any>
 
@@ -58,7 +59,7 @@ function allFilled(formData?: JsonSchemaFormData, required?: string[]) {
 
 export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
   title: string
-  schema: JSONSchema
+  schema: RJSFSchema
   onSubmit: (data: JsonSchemaFormDataWrapped) => Promise<void>
   whyForbidden?: string
   hideSubmitButton?: boolean
@@ -121,11 +122,11 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
           <WithWBRs word={title} />
         </h1>
         {whyForbidden && <p className="errorHint">Forbidden: {whyForbidden}</p>}
-        <FormComponent
+        <Form
           key={title /* rerender when title/method changes */}
           className={css.form}
           disabled={!!whyForbidden}
-          widgets={{ TextWidget: Textarea }}
+          // widgets={{ TextWidget: Textarea }}
           uiSchema={{
             'ui:submitButtonOptions': {
               norender: hideSubmitButton,
@@ -139,8 +140,7 @@ export const JsonSchemaForm: React.FC<React.PropsWithChildren<{
           schema={schema}
           formData={formData}
           onChange={setFormData}
-          onSubmit={onSubmitWrapped}
-        />
+          onSubmit={onSubmitWrapped} validator={validator}        />
         <div style={{ margin: '1.5rem 0' }}>
           {loading ? <div className="loader" /> : error ? (
             <>
